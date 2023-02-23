@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <header class="nav-header">
+        <nav class="nav">
+            <a class="logo-link" href="/">USED PARTS</a>
+            <ul class="nav-list">
+                <li class="nav-list-item">
+                    <a class="nav-link" href="">Moje ogłoszenia</a>
+                </li>
+                <li class="nav-list-item">
+                    <a class="nav-link" href="dodaj-ogloszenie">Dodaj ogłoszenie</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+{%  endblock %}

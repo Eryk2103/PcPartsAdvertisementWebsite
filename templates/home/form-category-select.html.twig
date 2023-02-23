@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div>
+        <h3 class="section-title">Wybierz kategorię</h3>
+        <form method="post" class="center-col">
+            <select class="category-select" name="select">
+                <option value="0">
+                    Karta graficzna
+                </option>
+                <option value="1">
+                    Procesor
+                </option>
+                <option value="2">
+                    Obudowa
+                </option>
+            </select>
+            <button type = "submit" class="btn">Dalej</button>
+        </form>
+
+
+    </div>
+
+
+{% endblock %}

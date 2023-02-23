@@ -69,12 +69,12 @@ class GpuOffer
 
     public function getOffer(): ?Offer
     {
-        return $this->Offer;
+        return $this->offer;
     }
 
     public function setOffer(Offer $Offer): self
     {
-        $this->Offer = $Offer;
+        $this->offer = $Offer;
 
         return $this;
     }

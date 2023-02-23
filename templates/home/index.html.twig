@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block content %}
+    <div class="section-items-group">
+        <h3 class="section-title">Kategorie</h3>
+        <ul class="category-list">
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a href="karty-graficzne">Karty graficzne</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Procesory</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Pamięć RAM</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Płyty główne</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Obudowy</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Zasilacze</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Dyski</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Chłodzenie</a>
+            </li>
+            <li class="category-group">
+                <img src="{{ asset('images/gpu.jpg') }}" class="category-img"/>
+                <a>Inne</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

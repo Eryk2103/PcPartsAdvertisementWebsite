@@ -1,0 +1,247 @@
+
+/*general styles*/
+body{
+    margin: 0;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
+/* typography */
+html{
+    font-family: 'Roboto', 'sans-serif';
+}
+
+/* nav-bar */
+.nav-header{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    border-bottom: solid 1px gray;
+}
+.nav{
+    grid-column-start: 2;
+    grid-column-end: 6;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-list{
+    display: flex;
+    justify-content: center;
+}
+.nav-list-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: orangered;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 1rem;
+}
+.nav-link{
+    padding: .4em 1em;
+    text-decoration: none;
+    color: black;
+    border-bottom: solid 2px rgb(0,0,0,0);
+}
+.nav-link:hover{
+    border-bottom: solid 2px orangered;
+}
+
+
+.section-title{
+    text-align: center;
+    font-size: 1.6em;
+    margin: 2rem 0;
+    grid-column-start: 1;
+    grid-column-end: end;
+}
+.section{
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+.section-items-group{
+    grid-column-start: 2;
+    grid-column-end: 6;
+}
+.category-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: solid 2px rgb(0,0,0,0);
+}
+.category-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.category-group a{
+    text-align: center;
+    margin-top: 1rem;
+    border-bottom: solid 2px rgb(0,0,0,0);
+}
+
+.category-group:hover{
+    cursor: pointer;
+}
+.category-group:hover a{
+    border-bottom: solid 2px orangered;
+}
+.category-group:hover img{
+    border: solid 2px orangered;
+}
+.category-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+.category-select{
+    font-size: 1.3em;
+    padding: .5em;
+    margin: 1rem;
+}
+/*offers*/
+.offer{
+    display: flex;
+    padding: .5em;
+    margin-left: 1rem;
+    border: solid 1px gray;
+}
+.offer:hover{
+    border: solid 1px orangered;
+    cursor: pointer;
+}
+.offer:nth-child(n+2){
+    margin-top: 1rem;
+}
+.offer:last-of-type{
+    margin-bottom: 1rem;
+}
+.offer-img{
+    width: 180px;
+    height: 180px
+}
+.offer-stats{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+
+}
+.offer-header{
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+}
+.offer-title{
+    margin: .5rem 0;
+    font-weight: 500;
+}
+.offer-fill{
+    margin: .5rem 0;
+    flex-grow: 2;
+}
+.offer-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+}
+.offer-price{
+    font-size: 1.6em;
+    font-weight: bold;
+}
+.item-list{
+    grid-column-start: 3;
+    grid-column-end: 6;
+}
+.pagination{
+    grid-column-start: 3;
+    grid-column-end: 6;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
+}
+/*general*/
+.background-dark{
+    background-color: #e5e5e5;
+}
+.text-center{
+    text-align: center;
+}
+.btn{
+    background-color: orangered;
+    padding: 1em 1.3em;
+    border: none;
+    border-radius: 0;
+    letter-spacing: .2rem;
+
+}
+.btn:hover{
+    cursor: pointer;
+}
+.pagination-link{
+    border: solid 1px gray;
+    padding: .4em;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0 1rem;
+    background-color: white;
+}
+.pagination-link:hover{
+    border: solid 1px orangered;
+    color: orangered;
+    cursor: pointer;
+}
+.select{
+    padding: 1em 1.3em;
+    border: none;
+    border-radius: 0;
+    letter-spacing: .1rem;
+    margin-left: 1rem;
+    min-width: 20%;
+}
+.input-group-row{
+    display: flex;
+    justify-content: space-around;
+
+}
+.input{
+    padding: .6em;
+    box-sizing: border-box;
+}
+.filters-price{
+    max-width: 40%;
+}
+.filters{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    border:solid 1px gray;
+    height:fit-content;
+    box-sizing: border-box;
+    padding: 1em;
+    min-width: 0;
+}
+.filters-checkbox-label{
+    margin-left: .5rem;
+}
+.btn-filter{
+    width:100%;
+    margin-top: 1rem;
+}
+
+/* general */
+.center-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

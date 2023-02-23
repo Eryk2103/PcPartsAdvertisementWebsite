@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    {{ form_start(offerForm) }}
+    {{ form_row(offerForm.brand) }}
+    {{ form_row(offerForm.manufacturer) }}
+    {{ form_row(offerForm.model) }}
+    {{ form_row(offerForm.offer.title) }}
+    <button type="submit" class="btn">Dodaj ogłoszenie</button>
+    {{ form_end(offerForm) }}
+{% endblock %}
