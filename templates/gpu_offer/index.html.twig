@@ -18,6 +18,18 @@
             </div>
         </article>
     {% endfor %}
+        <div class="pagination">
+            <p>
+                {% if currentPage > 1 %}
+                <a class="pagination-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'page': currentPage-1})) }}">{{ '<' }}</a>
+                {% endif %}
+                {{ ' ' }} {{ currentPage }} {{ ' z ' }} {{ lastPage }}
+                {% if currentPage < lastPage %}
+                <a class="pagination-link" href="{{ path(app.request.attributes.get('_route'),
+                    app.request.query.all|merge({'page': currentPage+1})) }}">{{ '>' }}</a>
+                {% endif %}
+            </p>
+        </div>
     </div>
     </section>
 {% endblock %}

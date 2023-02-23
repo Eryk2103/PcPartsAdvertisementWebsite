@@ -38,7 +38,10 @@ class GpuOfferRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function test()
+    {
 
+    }
 //    /**
 //     * @return GpuOffer[] Returns an array of GpuOffer objects
 //     */

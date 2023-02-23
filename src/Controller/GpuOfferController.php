@@ -22,13 +22,41 @@ class GpuOfferController extends AbstractController
     }
 
     #[Route('/karty-graficzne', name: 'app_gpu_offer')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $pageParam = $request->query->get('page');
+        $page = $pageParam == null ? "1" : $pageParam;
+        $itemsPerPage = 5;
         $repo = $this->em->getRepository(GpuOffer::class);
-        $offers = $repo->findAll();
+
+        $count = $repo->createQueryBuilder('g')
+            ->join('g.offer', 'o')
+            ->orderBy('o.createdAt', 'DESC')
+            ->select('count(g.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $lastPage = ceil($count / $itemsPerPage);
+        $page = $page < 1 ? 1 : $page;
+        $page = $page > $lastPage ? $lastPage : $page;
+
+        $offers = $repo->createQueryBuilder('g')
+            ->join('g.offer', 'o')
+            ->orderBy('o.createdAt', 'DESC')
+            ->setFirstResult($itemsPerPage * ($page-1))
+            ->setMaxResults($itemsPerPage)
+            ->getQuery()
+            ->getResult();
+
+
+
+
         return $this->render('gpu_offer/index.html.twig', [
             'offers' => $offers,
+            'lastPage' => $lastPage,
+            'currentPage' => $page
         ]);
+
     }
     #[Route('dodaj-ogloszenie/karty-graficzne', name: 'app_gpu_offer_create')]
     public function Create(Request $request) : Response
