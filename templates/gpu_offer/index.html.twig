@@ -39,51 +39,25 @@
         </div>
     </div>
     <div class="filters">
-        <form class="filters-form">
+        <form class="filters-form" method="get" id="filter">
             <h4 class="filter-title">Cena</h4>
             <div class="filters-range">
-                <input class="filters-price" placeholder="od"/>
-                <input class="filters-price" placeholder="do"/>
+                <input class="filters-price" placeholder="od" name="price_from"/>
+                <input class="filters-price" placeholder="do" name="price_to"/>
             </div>
             <hr></hr>
             <h4 class="filter-title">Producent</h4>
             <div>
                 <div>
-                    <input type="checkbox">
+                    <input type="checkbox" name="manufacturer[]" value="nvidia">
                     <label>NVIDIA</label>
                 </div>
             <div>
-                    <input type="checkbox">
+                    <input type="checkbox" name="manufacturer[]" value="amd">
                     <label>AMD</label>
                 </div><div>
-                    <input type="checkbox">
+                    <input type="checkbox" name="manufacturer[]" value="intel">
                     <label>INTEL</label>
-                </div>
-            </div>
-            <hr></hr>
-            <h4 class="filter-title">Marka</h4>
-            <div>
-                <div>
-                    <input type="checkbox">
-                    <label>NVIDIA</label>
-                </div>
-            <div>
-                    <input type="checkbox">
-                    <label>AMD</label>
-                </div><div>
-                    <input type="checkbox">
-                    <label>INTEL</label>
-                </div>
-                <div>
-                    <input type="checkbox">
-                    <label>MSI</label>
-                </div>
-            <div>
-                    <input type="checkbox">
-                    <label>ASUS</label>
-                </div><div>
-                    <input type="checkbox">
-                    <label>PALET</label>
                 </div>
             </div>
             <button class="btn btn-filter">Filtruj</button>
@@ -91,6 +65,7 @@
     </div>
     </section>
      <script>
+        //sorting
         const orderSelect = document.getElementById("order");
         const url = window.location.href;
         
@@ -102,6 +77,30 @@
 
             window.location = newUrl.toString();
         })
-       
+
+        //filtering
+    /*
+       const form = document.getElementById("filter");
+
+       form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let newUrl = new URL(url);
+
+            const data = new FormData(event.target);
+            //console.log(data)
+            for(const [name, value] of data)
+            {
+                if(value)
+                {
+
+                   newUrl.searchParams.set(name, value);
+                }
+            }
+            window.location = newUrl.toString();
+           
+       });
+
+*/
     </script>
 {% endblock %}
