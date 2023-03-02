@@ -11,7 +11,12 @@ ul{
 html{
     font-family: 'Roboto', 'sans-serif';
 }
-
+*{
+    box-sizing: border-box;
+}
+hr{
+    margin: 1rem 0;
+}
 /* nav-bar */
 .nav-header{
     display: grid;
@@ -223,12 +228,12 @@ html{
 .filters{
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 2;
+    grid-row-start: 1;
     border:solid 1px gray;
     height:fit-content;
-    box-sizing: border-box;
     padding: 1em;
     min-width: 0;
+    box-sizing: border-box;
 }
 .filters-checkbox-label{
     margin-left: .5rem;
@@ -236,6 +241,13 @@ html{
 .btn-filter{
     width:100%;
     margin-top: 1rem;
+}
+.filters-range{
+    display: flex;
+    justify-content: space-between;
+}
+.filter-title{
+    margin: .5rem 0;
 }
 
 /* general */
@@ -245,3 +257,38 @@ html{
     justify-content: center;
     align-items: center;
 }
+/* form */
+.textarea-input{
+    margin: .5rem 0;
+    font-size: 1.3em;
+    padding: .3em;
+    min-height: 30vh;
+    width: 100%;
+}
+.text-input{
+    margin: .5rem 0;
+    font-size: 1.3em;
+    padding: .3em;
+    width: 100%;
+}
+.form-wrap{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+/*form{
+    width: 100%;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1em 4em;
+}
+*/
+.select{
+    padding: 1em 1.3em;
+    border: 1px solid gray;
+    letter-spacing: .1rem;
+    margin-left: 1rem;
+  }
+ 

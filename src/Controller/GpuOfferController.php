@@ -25,13 +25,24 @@ class GpuOfferController extends AbstractController
     public function index(Request $request): Response
     {
         $pageParam = $request->query->get('page');
+        $orderParam = $request->query->get('orderby');
+
+        $orderArr = explode('_', $orderParam);
+        if($orderParam == null)
+        {
+            $orderArr[0] = 'createdAt';
+            $orderArr[1] = 'desc';
+        }
+        
+
         $page = $pageParam == null ? "1" : $pageParam;
         $itemsPerPage = 5;
+
         $repo = $this->em->getRepository(GpuOffer::class);
 
         $count = $repo->createQueryBuilder('g')
             ->join('g.offer', 'o')
-            ->orderBy('o.createdAt', 'DESC')
+            ->orderBy('o.' . $orderArr[0], $orderArr[1])
             ->select('count(g.id)')
             ->getQuery()
             ->getSingleScalarResult();
@@ -42,7 +53,7 @@ class GpuOfferController extends AbstractController
 
         $offers = $repo->createQueryBuilder('g')
             ->join('g.offer', 'o')
-            ->orderBy('o.createdAt', 'DESC')
+            ->orderBy('o.' . $orderArr[0], $orderArr[1])
             ->setFirstResult($itemsPerPage * ($page-1))
             ->setMaxResults($itemsPerPage)
             ->getQuery()
@@ -54,7 +65,8 @@ class GpuOfferController extends AbstractController
         return $this->render('gpu_offer/index.html.twig', [
             'offers' => $offers,
             'lastPage' => $lastPage,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'orderSelected' => $orderParam
         ]);
 
     }

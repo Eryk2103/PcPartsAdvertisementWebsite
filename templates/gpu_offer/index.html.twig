@@ -1,8 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+   
     <section class="section">
+   
     <div class="item-list">
+    <select class="order select" id="order">
+        <option value="createdAt_desc" {% if (orderSelected == 'createdAt_desc' or orderSelected == null) %} selected='selected' {% endif %}>Najnowsze</option>
+        <option value="price_asc" {% if orderSelected == 'price_asc' %} selected='selected' {% endif %}>Cena: rosnąco</option>
+        <option value="price_desc" {% if orderSelected == 'price_desc' %} selected='selected' {% endif %}>Cena: malejąco</option>
+    </select>
     {% for offer in offers %}
         <article class="offer">
             <img class="offer-img" src="{{ asset('images/gpu.jpg') }}" alt="img">
@@ -31,5 +38,70 @@
             </p>
         </div>
     </div>
+    <div class="filters">
+        <form class="filters-form">
+            <h4 class="filter-title">Cena</h4>
+            <div class="filters-range">
+                <input class="filters-price" placeholder="od"/>
+                <input class="filters-price" placeholder="do"/>
+            </div>
+            <hr></hr>
+            <h4 class="filter-title">Producent</h4>
+            <div>
+                <div>
+                    <input type="checkbox">
+                    <label>NVIDIA</label>
+                </div>
+            <div>
+                    <input type="checkbox">
+                    <label>AMD</label>
+                </div><div>
+                    <input type="checkbox">
+                    <label>INTEL</label>
+                </div>
+            </div>
+            <hr></hr>
+            <h4 class="filter-title">Marka</h4>
+            <div>
+                <div>
+                    <input type="checkbox">
+                    <label>NVIDIA</label>
+                </div>
+            <div>
+                    <input type="checkbox">
+                    <label>AMD</label>
+                </div><div>
+                    <input type="checkbox">
+                    <label>INTEL</label>
+                </div>
+                <div>
+                    <input type="checkbox">
+                    <label>MSI</label>
+                </div>
+            <div>
+                    <input type="checkbox">
+                    <label>ASUS</label>
+                </div><div>
+                    <input type="checkbox">
+                    <label>PALET</label>
+                </div>
+            </div>
+            <button class="btn btn-filter">Filtruj</button>
+        </form>
+    </div>
     </section>
+     <script>
+        const orderSelect = document.getElementById("order");
+        const url = window.location.href;
+        
+
+        orderSelect.addEventListener("change", function(){
+            let newUrl = new URL(url);
+            newUrl.searchParams.set('orderby', orderSelect.value);
+            newUrl.searchParams.set('page', '1');
+
+            window.location = newUrl.toString();
+        })
+       
+    </script>
 {% endblock %}
