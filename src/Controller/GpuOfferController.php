@@ -44,12 +44,14 @@ class GpuOfferController extends AbstractController
         $offers = $result[0];
         //$count = $result[1];
         $lastPage = $result[2];
- 
         return $this->render('gpu_offer/index.html.twig', [
             'offers' => $offers,
             'lastPage' => $lastPage,
             'currentPage' => $page,
-            'orderSelected' => $orderParam
+            'orderSelected' => $orderParam,
+            'priceFrom' => $priceFromParam,
+            'priceTo' => $priceToParam,
+            'manufacturers' => $manufacturerParam,
         ]);
 
     }

@@ -42,21 +42,21 @@
         <form class="filters-form" method="get" id="filter">
             <h4 class="filter-title">Cena</h4>
             <div class="filters-range">
-                <input class="filters-price" placeholder="od" name="price_from"/>
-                <input class="filters-price" placeholder="do" name="price_to"/>
+                <input class="filters-price" placeholder="od" name="price_from" value="{{ priceFrom == 0 ? ' ' : priceFrom}}"/>
+                <input class="filters-price" placeholder="do" name="price_to" value="{{ priceTo == 0 ? ' ' : priceTo }}"/>
             </div>
             <hr></hr>
             <h4 class="filter-title">Producent</h4>
             <div>
                 <div>
-                    <input type="checkbox" name="manufacturer[]" value="nvidia">
+                    <input type="checkbox" name="manufacturer[]" value="nvidia" {% if "nvidia" in manufacturers %}checked {% endif %}>
                     <label>NVIDIA</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="manufacturer[]" value="amd">
+                    <input type="checkbox" name="manufacturer[]" value="amd" {% if "amd" in manufacturers %}checked {% endif %}>
                     <label>AMD</label>
                 </div><div>
-                    <input type="checkbox" name="manufacturer[]" value="intel">
+                    <input type="checkbox" name="manufacturer[]" value="intel" {% if "intel" in manufacturers %}checked {% endif %}>
                     <label>INTEL</label>
                 </div>
             </div>
