@@ -14,18 +14,30 @@ class GpuOfferService{
         $this->em = $em;
     }
     
-    public function GetOffers(int $page, ?Array $manufacturers = null, ?Float $priceTo = null ,?Float $priceFrom = null, string $orderField = "createdAt", string $orderDirection = "DESC") : Array
+    public function GetOffers(int $page, ?Array $model = null, ?Array $brand = null, ?Array $manufacturers = null, ?Float $priceTo = null ,?Float $priceFrom = null, string $orderField = "createdAt", string $orderDirection = "DESC") : Array
     {
+        
         $repo = $this->em->getRepository(GpuOffer::class);
         $qb = $repo->createQueryBuilder('g')
             ->join('g.offer', 'o')
             ->orderBy('o.' . $orderField, $orderDirection);
+
+        if($model)
+        {
+            $qb -> andWhere('g.model in (:mo)')
+                ->setParameter('mo', $model);
+        }
         if($manufacturers)
         {
             $qb -> andWhere('g.manufacturer in (:m)')
                 ->setParameter('m', $manufacturers);
-            
         }
+        if($brand)
+        {
+            $qb -> andWhere('g.brand in (:b)')
+                ->setParameter('b', $brand);
+        }
+        
         if($priceFrom)
         {
             $qb -> andWhere('o.price >= :priceFrom')
@@ -44,17 +56,43 @@ class GpuOfferService{
         $page = $page < 1 ? 1 : $page;
         $page = $page > $lastPage ? $lastPage : $page;
         $offers = [];
-        
+
         if($count > 0)
         {
             $offers = $this->getPage($qb2, $page, $itemsPerPage);
         }
+        
         return [$offers, $count, $lastPage];
     }
-
+    public function GetBrands()
+    {
+        $repo = $this->em->getRepository(GpuOffer::class);
+        $qb = $repo->createQueryBuilder('g')
+            ->select('DISTINCT(g.brand) as name')
+            ->getQuery()
+            ->getResult();
+        return $qb;
+    }
+    public function GetManufacturers()
+    {
+        $repo = $this->em->getRepository(GpuOffer::class);
+        $qb = $repo->createQueryBuilder('g')
+            ->select('DISTINCT(g.manufacturer) as name')
+            ->getQuery()
+            ->getResult();
+        return $qb;
+    }
+    public function GetModels()
+    {
+        $repo = $this->em->getRepository(GpuOffer::class);
+        $qb = $repo->createQueryBuilder('g')
+            ->select('DISTINCT(g.model) as name')
+            ->getQuery()
+            ->getResult();
+        return $qb;
+    }
     private function GetPage($qb, int $page, int $itemsPerPage)
     {
-        
         return $qb
             ->setFirstResult($itemsPerPage * ($page-1))
             ->setMaxResults($itemsPerPage)

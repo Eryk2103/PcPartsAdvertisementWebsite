@@ -31,8 +31,9 @@ class GpuOfferController extends AbstractController
         $priceFromParam = (float) $request->query->get('price_from');
         $priceToParam = (float) $request->query->get('price_to');
         $manufacturerParam = $request->query->all('manufacturer');
+        $brandParam = $request->query->all('brand');
         $orderArr = explode('_', $orderParam);
-  
+        $modelParam =  $request->query->all('model');
         if($orderParam == null)
         {
             $orderArr[0] = 'createdAt';
@@ -40,10 +41,15 @@ class GpuOfferController extends AbstractController
         }
         $page = $pageParam == null ? "1" : $pageParam;
 
-        $result = $this->gpuOfferService->getOffers($page, $manufacturerParam, $priceToParam, $priceFromParam, $orderArr[0], $orderArr[1]);
+        $result = $this->gpuOfferService->getOffers($page, $modelParam, $brandParam, $manufacturerParam, $priceToParam, $priceFromParam, $orderArr[0], $orderArr[1]);
+        
         $offers = $result[0];
         //$count = $result[1];
         $lastPage = $result[2];
+        $brands = $this->gpuOfferService->GetBrands();
+        $manufacturers = $this->gpuOfferService->GetManufacturers();
+        $models = $this->gpuOfferService->GetModels();
+
         return $this->render('gpu_offer/index.html.twig', [
             'offers' => $offers,
             'lastPage' => $lastPage,
@@ -51,7 +57,12 @@ class GpuOfferController extends AbstractController
             'orderSelected' => $orderParam,
             'priceFrom' => $priceFromParam,
             'priceTo' => $priceToParam,
-            'manufacturers' => $manufacturerParam,
+            'manufacturers' => $manufacturers,
+            'brands' => $brands,
+            'models' => $models,
+            'maufacturersSelected' => $manufacturerParam,
+            'brandSelected' => $brandParam,
+            'modelsSelected' => $modelParam
         ]);
 
     }
