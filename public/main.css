@@ -119,6 +119,9 @@ hr{
     margin-left: 1rem;
     border: solid 1px gray;
 }
+.offer-full{
+    min-width: 60%;
+}
 .offer:hover{
     border: solid 1px orangered;
     cursor: pointer;
@@ -301,4 +304,11 @@ hr{
  .auth-form{
     min-width: 60%;
     
+ }
+ .col{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
  }
