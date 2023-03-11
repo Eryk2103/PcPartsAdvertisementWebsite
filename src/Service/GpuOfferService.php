@@ -66,30 +66,15 @@ class GpuOfferService{
     }
     public function GetBrands()
     {
-        $repo = $this->em->getRepository(GpuOffer::class);
-        $qb = $repo->createQueryBuilder('g')
-            ->select('DISTINCT(g.brand) as name')
-            ->getQuery()
-            ->getResult();
-        return $qb;
+        return ["MSI", "ASUS"];
     }
     public function GetManufacturers()
     {
-        $repo = $this->em->getRepository(GpuOffer::class);
-        $qb = $repo->createQueryBuilder('g')
-            ->select('DISTINCT(g.manufacturer) as name')
-            ->getQuery()
-            ->getResult();
-        return $qb;
+        return ["NVIDIA", "AMD", "INTEL"];
     }
     public function GetModels()
     {
-        $repo = $this->em->getRepository(GpuOffer::class);
-        $qb = $repo->createQueryBuilder('g')
-            ->select('DISTINCT(g.model) as name')
-            ->getQuery()
-            ->getResult();
-        return $qb;
+        return ["GTX 1600", "RTX 2060"];
     }
     private function GetPage($qb, int $page, int $itemsPerPage)
     {

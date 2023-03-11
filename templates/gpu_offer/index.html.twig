@@ -50,8 +50,8 @@
             <div>
                 {% for manufacturer in manufacturers %}
                 <div>
-                    <input type="checkbox" name="manufacturer[]" value="{{ manufacturer.name }}" {% if manufacturer.name in maufacturersSelected  %} checked {% endif %}>
-                    <label>{{ manufacturer.name | upper }}</label>
+                    <input type="checkbox" name="manufacturer[]" value="{{ manufacturer }}" {% if manufacturer in maufacturersSelected  %} checked {% endif %}>
+                    <label>{{ manufacturer | upper }}</label>
                 </div>
             {% endfor %}
             </div>
@@ -60,8 +60,8 @@
             <div>
             {% for brand in brands %}
                 <div>
-                    <input type="checkbox" name="brand[]" value="{{ brand.name }}" {% if brand.name in brandSelected  %} checked {% endif %}>
-                    <label>{{ brand.name | upper }}</label>
+                    <input type="checkbox" name="brand[]" value="{{ brand }}" {% if brand in brandSelected  %} checked {% endif %}>
+                    <label>{{ brand | upper }}</label>
                 </div>
             {% endfor %}
             </div>
@@ -70,8 +70,8 @@
             <div>
             {% for model in models %}
                 <div>
-                    <input type="checkbox" name="model[]" value="{{ model.name }}" {% if model.name in modelsSelected  %} checked {% endif %}>
-                    <label>{{ model.name | upper }}</label>
+                    <input type="checkbox" name="model[]" value="{{ model }}" {% if model in modelsSelected  %} checked {% endif %}>
+                    <label>{{ model | upper }}</label>
                 </div>
             {% endfor %}
             </div>
