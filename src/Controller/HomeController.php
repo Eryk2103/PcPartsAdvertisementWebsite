@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class HomeController extends AbstractController
 {
@@ -15,7 +16,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', []);
     }
     #[Route('/dodaj-ogloszenie', name: 'app_home_create_offer')]
-    public function Create(Request $request): Response
+    public function Create(Request $request, UserInterface $user): Response
     {
         if($request->isMethod('post'))
         {

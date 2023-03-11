@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class GpuOfferController extends AbstractController
 {
@@ -45,8 +46,7 @@ class GpuOfferController extends AbstractController
         
         $offers = $result[0];
         //$count = $result[1];
-        $lastPage = $result[2];
-        $brands = $this->gpuOfferService->GetBrands();
+        $lastPage = $result[2];     $brands = $this->gpuOfferService->GetBrands();
         $manufacturers = $this->gpuOfferService->GetManufacturers();
         $models = $this->gpuOfferService->GetModels();
 
@@ -67,13 +67,17 @@ class GpuOfferController extends AbstractController
 
     }
     #[Route('dodaj-ogloszenie/karty-graficzne', name: 'app_gpu_offer_create')]
-    public function Create(Request $request) : Response
+    public function Create(Request $request, UserInterface $user) : Response
     {
         $offer = new GpuOffer();
         $form = $this->createForm(GpuOfferType::class, $offer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $offer2 = $offer->getOffer();
+            $offer2->setUser($user);
+            $offer2->setImg("test");
+            $offer = $offer->setOffer($offer2);
             $this->em->persist($offer);
             $this->em->flush();
 

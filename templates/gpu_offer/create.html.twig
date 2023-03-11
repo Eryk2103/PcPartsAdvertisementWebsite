@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 <div class="form-wrap">
-    {{ form_start(offerForm) }}
+    {{ form_start(offerForm, { 'attr' : { 'class': 'add-form' } }) }}
     {{ form_row(offerForm.offer) }}
     {{ form_row(offerForm.brand) }}
     {{ form_row(offerForm.manufacturer) }}
