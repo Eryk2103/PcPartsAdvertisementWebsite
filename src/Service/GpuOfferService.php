@@ -76,6 +76,17 @@ class GpuOfferService{
     {
         return ["GTX 1600", "RTX 2060"];
     }
+    public function GetOffer(int $id)
+    {
+        $repo = $this->em->getRepository(GpuOffer::class);
+        $qb = $repo->createQueryBuilder('g')
+            ->join('g.offer', 'o')
+            ->andWhere('g.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult();
+        return $qb;
+    }
     private function GetPage($qb, int $page, int $itemsPerPage)
     {
         return $qb

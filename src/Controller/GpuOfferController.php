@@ -88,5 +88,18 @@ class GpuOfferController extends AbstractController
             'offerForm' => $form->createView(),
         ]);
     }
+    #[Route('karty-graficzne/{id}', name: 'app_gpu_offer_detail',  requirements: ['id' => '\d+'])]
+    public function Detail(int $id) : Response
+    {
+        $offer = $this->gpuOfferService->GetOffer($id);
+        if($offer)
+        {
+       
+            return $this->render('gpu_offer/detail.html.twig', [
+                'offer' => $offer
+            ]);
+        }
+        return $this->redirectToRoute('app_gpu_offer');
+    }
 
 }

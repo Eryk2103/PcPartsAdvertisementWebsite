@@ -165,6 +165,22 @@ hr{
     font-size: 1.6em;
     font-weight: bold;
 }
+
+.offer-detail{
+    grid-column-start: 2;
+    grid-column-end: 6;
+    border: solid gray 1px;
+    padding: 1em;
+}
+.offer-detail-price{
+    font-size: 1.4em;
+    font-weight: 600;
+}
+.img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .item-list{
     grid-column-start: 3;
     grid-column-end: 6;

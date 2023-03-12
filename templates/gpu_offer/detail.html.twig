@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<div class="section">
+    <div class="offer-detail">
+        <h1 class="offer-detail-title">{{offer.offer.title}}</h1>
+        <p class="offer-detail-subtitle"><span class="offer-detail-price">{{offer.offer.price}} zł</span> - {{offer.offer.location}} - </p>
+        <div class="img-container">
+            <img class="offer-detail-img" src="{{ asset('images/gpu.jpg') }}" alt="offer">
+        </div>
+        
+        <p class="offer-detail-description">{{offer.offer.description}}</p>
+    </div>
+</div>
+{% endblock %}

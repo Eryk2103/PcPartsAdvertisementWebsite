@@ -11,7 +11,7 @@
         <option value="price_desc" {% if orderSelected == 'price_desc' %} selected='selected' {% endif %}>Cena: malejąco</option>
     </select>
     {% for offer in offers %}
-        <article class="offer">
+        <article class="offer" onclick="redirectToDetail({{offer.id}})">
             <img class="offer-img" src="{{ asset('images/gpu.jpg') }}" alt="img">
             <div class="offer-stats">
                 <div class="offer-header">
@@ -93,29 +93,10 @@
             window.location = newUrl.toString();
         })
 
-        //filtering
-    /*
-       const form = document.getElementById("filter");
+        function redirectToDetail(id)
+        {
+            window.location = url + '/' + id;
+        }
 
-       form.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            let newUrl = new URL(url);
-
-            const data = new FormData(event.target);
-            //console.log(data)
-            for(const [name, value] of data)
-            {
-                if(value)
-                {
-
-                   newUrl.searchParams.set(name, value);
-                }
-            }
-            window.location = newUrl.toString();
-           
-       });
-
-*/
     </script>
 {% endblock %}
