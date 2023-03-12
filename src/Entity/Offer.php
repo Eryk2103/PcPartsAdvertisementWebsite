@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\OfferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use \Datetime;
+use DateTimeImmutable;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
@@ -36,6 +38,10 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -106,12 +112,7 @@ class Offer
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
+    
 
     public function getUser(): ?User
     {
@@ -123,5 +124,25 @@ class Offer
         $this->user = $user;
 
         return $this;
+    }
+    public function getCreatedAgo(): String
+    {
+        $current = new DateTime();
+        $diff = $current->diff($this->createdAt);
+        
+        if($diff->days > 1)
+        {
+            return $diff->days . " dni";
+        }
+        if($diff->h > 0)
+        {
+            return $diff->m . " godz.";
+        }
+        if($diff->i > 0)
+        {
+            return $diff->i . " min.";
+        }
+        return "nowe";
+        
     }
 }

@@ -54,8 +54,8 @@ class OfferType extends AbstractType
                 'placeholder' => 'miejscowość',
                 'maxlength' => 100
             ]
-        ])
-        ->add('createdAt');
+            ]);
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

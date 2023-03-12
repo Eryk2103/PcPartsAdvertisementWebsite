@@ -172,6 +172,10 @@ hr{
     border: solid gray 1px;
     padding: 1em;
 }
+.my-offer{
+    grid-column-start: 2;
+    grid-column-end: 6;
+}
 .offer-detail-price{
     font-size: 1.4em;
     font-weight: 600;
@@ -187,6 +191,13 @@ hr{
 }
 .pagination{
     grid-column-start: 3;
+    grid-column-end: 6;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.pagination-full{
+    grid-column-start: 2;
     grid-column-end: 6;
     margin-left: 1rem;
     display: flex;

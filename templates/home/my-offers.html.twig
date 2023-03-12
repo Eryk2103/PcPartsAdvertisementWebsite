@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="col">
+    <div class="section">
     {% for offer in offers %}
-        <article class="offer offer-full">
+        <article class="offer my-offer" >
             <img class="offer-img" src="{{ asset('images/gpu.jpg') }}" alt="img">
             <div class="offer-stats">
                 <div class="offer-header">
@@ -17,7 +17,7 @@
             </div>
         </article>
     {% endfor %}
-        <div class="pagination">
+        <div class="pagination-full">
             <p>
                 {% if currentPage > 1 %}
                 <a class="pagination-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'page': currentPage-1})) }}">{{ '<' }}</a>
@@ -30,5 +30,5 @@
             </p>
         </div>
     </div>
-    </div>
+    
 {% endblock %}

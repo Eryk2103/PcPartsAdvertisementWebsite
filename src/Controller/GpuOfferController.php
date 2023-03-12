@@ -94,7 +94,6 @@ class GpuOfferController extends AbstractController
         $offer = $this->gpuOfferService->GetOffer($id);
         if($offer)
         {
-       
             return $this->render('gpu_offer/detail.html.twig', [
                 'offer' => $offer
             ]);
