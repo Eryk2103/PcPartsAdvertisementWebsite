@@ -3,9 +3,11 @@
 <div class="form-wrap">
     {{ form_start(offerForm, { 'attr' : { 'class': 'add-form' } }) }}
     {{ form_row(offerForm.offer) }}
-    {{ form_row(offerForm.brand) }}
-    {{ form_row(offerForm.manufacturer) }}
-    {{ form_row(offerForm.model) }}
+    <div class="form-select-row">
+        {{ form_row(offerForm.brand) }}
+        {{ form_row(offerForm.manufacturer) }}
+        {{ form_row(offerForm.model) }}
+    </div>
     <button type="submit" class="btn">Dodaj ogłoszenie</button>
     {{ form_end(offerForm) }}
 </div>

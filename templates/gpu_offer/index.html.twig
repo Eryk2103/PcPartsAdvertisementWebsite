@@ -12,7 +12,7 @@
     </select>
     {% for offer in offers %}
         <article class="offer" onclick="redirectToDetail({{offer.id}})">
-            <img class="offer-img" src="{{ asset('images/gpu.jpg') }}" alt="img">
+            <img class="offer-img" src="{{ asset('uploads/' ~ offer.offer.img) }}" alt="img">
             <div class="offer-stats">
                 <div class="offer-header">
                     <h3 class="offer-title">{{offer.offer.title}}</h3>
@@ -42,8 +42,8 @@
         <form class="filters-form" method="get" id="filter">
             <h4 class="filter-title">Cena</h4>
             <div class="filters-range">
-                <input class="filters-price" placeholder="od" name="price_from" value="{{ priceFrom == 0 ? ' ' : priceFrom}}"/>
-                <input class="filters-price" placeholder="do" name="price_to" value="{{ priceTo == 0 ? ' ' : priceTo }}"/>
+                <input class="filters-price" name="price_from" value="{{ priceFrom == 0 ? ' ' : priceFrom}}"/> - 
+                <input class="filters-price" name="price_to" value="{{ priceTo == 0 ? ' ' : priceTo }}"/>
             </div>
             <hr></hr>
             <h4 class="filter-title">Producent</h4>

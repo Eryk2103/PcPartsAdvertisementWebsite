@@ -1,18 +1,21 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    {% if offers|length == 0 %}
+        <p class="center-col">Brak ogłoszeń</p>
+    {% else %}
     <div class="section">
     {% for offer in offers %}
-        <article class="offer my-offer" >
-            <img class="offer-img" src="{{ asset('images/gpu.jpg') }}" alt="img">
+        <article class="offer my-offer" onclick="redirectToDetail({{offer.id}})">
+            <img class="offer-img" src="{{ asset('uploads/' ~ offer.offer.img) }}" alt="img">
             <div class="offer-stats">
                 <div class="offer-header">
-                    <h3 class="offer-title">{{offer.title}}</h3>
+                    <h3 class="offer-title">{{offer.offer.title}}</h3>
                 </div>
                 <div class="offer-fill"> </div>
-                <p class="offer-price">{{ offer.price }} zł</p>
+                <p class="offer-price">{{ offer.offer.price }} zł</p>
                 <div class="offer-footer">
-                    <p class="offer-location">{{ offer.location }} - {{ offer.createdAt | date('d:m:Y')}}</p>
+                    <p class="offer-location">{{ offer.offer.location }} - {{ offer.offer.createdAt | date('d:m:Y')}}</p>
                 </div>
             </div>
         </article>
@@ -30,5 +33,13 @@
             </p>
         </div>
     </div>
-    
+    <script>
+    const url = new URL(window.location.href);
+
+            function redirectToDetail(id)
+            {
+                window.location = url.origin + '/karty-graficzne/' + id;
+            }
+    </script>
+    {% endif %}
 {% endblock %}

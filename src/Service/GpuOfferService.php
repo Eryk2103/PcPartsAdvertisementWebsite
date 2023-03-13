@@ -8,7 +8,6 @@ use App\Entity\GpuOffer;
 class GpuOfferService{
 
     private EntityManagerInterface $em;
-
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -66,15 +65,15 @@ class GpuOfferService{
     }
     public function GetBrands()
     {
-        return ["MSI", "ASUS"];
+        return ["MSI", "ASUS", "AMD", "NVIDIA", "PALIT", "INNE"];
     }
     public function GetManufacturers()
     {
-        return ["NVIDIA", "AMD", "INTEL"];
+        return ["NVIDIA", "AMD", "INNE"];
     }
     public function GetModels()
     {
-        return ["GTX 1600", "RTX 2060"];
+        return ["RTX 3050", "RTX 3060", "RTX 3070", "RTX 3080", "RX 7900 XTX", "INNE"];
     }
     public function GetOffer(int $id)
     {
@@ -86,6 +85,13 @@ class GpuOfferService{
             ->getQuery()
             ->getSingleResult();
         return $qb;
+    }
+    public function delete(int $id)
+    {
+        $repo = $this->em->getRepository(GpuOffer::class);
+        $offer = $repo->find($id);
+        $this->em->remove($offer);
+        $this->em->flush();
     }
     private function GetPage($qb, int $page, int $itemsPerPage)
     {

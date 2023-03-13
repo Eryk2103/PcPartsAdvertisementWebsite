@@ -8,10 +8,12 @@ use App\Form\GpuOfferType;
 use App\Service\GpuOfferService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class GpuOfferController extends AbstractController
 {
@@ -67,16 +69,30 @@ class GpuOfferController extends AbstractController
 
     }
     #[Route('dodaj-ogloszenie/karty-graficzne', name: 'app_gpu_offer_create')]
-    public function Create(Request $request, UserInterface $user) : Response
+    public function Create(Request $request, UserInterface $user, SluggerInterface $slugger) : Response
     {
         $offer = new GpuOffer();
         $form = $this->createForm(GpuOfferType::class, $offer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('offer')->get('img')->getData();
+            $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$img->guessExtension();
+
+            try{
+                $img->move($this->getParameter("uploads_dir"), $newFilename);
+
+            }
+            catch(FileException $e){
+
+            }
+
             $offer2 = $offer->getOffer();
             $offer2->setUser($user);
-            $offer2->setImg("test");
+            $offer2->setImg($newFilename);
             $offer = $offer->setOffer($offer2);
             $this->em->persist($offer);
             $this->em->flush();
@@ -100,5 +116,10 @@ class GpuOfferController extends AbstractController
         }
         return $this->redirectToRoute('app_gpu_offer');
     }
-
+    #[Route('karty-graficzne/usun/{id}', name: 'app_gpu_offer_delete',  requirements: ['id' => '\d+'])]
+    public function Delete(int $id) : Response
+    {
+        $this->gpuOfferService->delete($id);
+        return $this->redirectToRoute('app_gpu_offer');
+    }
 }

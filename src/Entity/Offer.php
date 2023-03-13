@@ -136,7 +136,7 @@ class Offer
         }
         if($diff->h > 0)
         {
-            return $diff->m . " godz.";
+            return $diff->h . " godz.";
         }
         if($diff->i > 0)
         {

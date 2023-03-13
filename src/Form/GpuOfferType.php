@@ -3,39 +3,44 @@
 namespace App\Form;
 
 use App\Entity\GpuOffer;
+use App\Service\GpuOfferService;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class GpuOfferType extends AbstractType
 {
+    private GpuOfferService $gpuOfferService;
+
+    public function __construct(GpuOfferService $gpuOfferService)
+    {
+        $this->gpuOfferService = $gpuOfferService;    
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('brand', TextType::class,[
+            ->add('brand', ChoiceType::class,[
                 'label' => false,
+                'choices' => array_combine($this->gpuOfferService->GetBrands(), $this->gpuOfferService->GetBrands()),
                 'attr' => [
-                    'class' => 'text-input',
-                    'placeholder' => 'marka',
-                    'maxlength' => 255
-                ]
+                    'class' => 'select',
+                ],
             ])
-            ->add('model', TextType::class,[
+            ->add('model', ChoiceType::class,[
                 'label' => false,
+                'choices' => array_combine($this->gpuOfferService->GetModels(), $this->gpuOfferService->GetModels()),
                 'attr' => [
-                    'class' => 'text-input',
-                    'placeholder' => 'model',
-                    'maxlength' => 255
-                ]
+                    'class' => 'select',
+                ],
             ])
-            ->add('manufacturer', TextType::class,[
+            ->add('manufacturer', ChoiceType::class,[
                 'label' => false,
+                'choices' => array_combine($this->gpuOfferService->GetManufacturers(), $this->gpuOfferService->GetManufacturers()),
                 'attr' => [
-                    'class' => 'text-input',
-                    'placeholder' => 'producent',
-                    'maxlength' => 255
-                ]
+                    'class' => 'select',
+                ],
             ])
             ->add('offer',OfferType::class, [
                 'label' => false,  

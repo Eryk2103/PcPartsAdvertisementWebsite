@@ -176,6 +176,7 @@ hr{
     grid-column-start: 2;
     grid-column-end: 6;
 }
+
 .offer-detail-price{
     font-size: 1.4em;
     font-weight: 600;
@@ -234,14 +235,7 @@ hr{
     color: orangered;
     cursor: pointer;
 }
-.select{
-    padding: 1em 1.3em;
-    border: none;
-    border-radius: 0;
-    letter-spacing: .1rem;
-    margin-left: 1rem;
-    min-width: 20%;
-}
+
 .input-group-row{
     display: flex;
     justify-content: space-around;
@@ -338,4 +332,16 @@ hr{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+ }
+ .form-select-row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+ }
+ .form-select-row > div > .select{
+    width: 100%;
+    margin: 0;
+ }
+ .form-select-row > div{
+    width: 33%;
  }

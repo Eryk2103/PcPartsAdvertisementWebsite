@@ -5,10 +5,15 @@
         <h1>{{offer.offer.title}}</h1>
         <p><span class="offer-detail-price">{{offer.offer.price}} zł</span> - {{offer.offer.location}} - {{offer.offer.createdAgo}}</p>
         <div class="img-container">
-            <img class="offer-detail-img" src="{{ asset('images/gpu.jpg') }}" alt="offer">
+            <img class="offer-detail-img" src="{{ asset('uploads/' ~ offer.offer.img) }}" alt="offer">
         </div>
         
         <p class="offer-detail-description">{{offer.offer.description | nl2br}}</p>
+        {% if app.user == offer.offer.user %}
+        
+            <a href="usun/{{offer.id}}">Usuń</a>
+        {% endif %}
     </div>
 </div>
+
 {% endblock %}
